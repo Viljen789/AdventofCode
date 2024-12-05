@@ -31,6 +31,7 @@ with open("input.txt") as f:
             downright = "".join([lines[y-1+l][x-1+l] for l in range(3) if (x not in [0, len(line)-1] and y not in [0, len(lines)-1])])
             downleft = "".join([lines[y-1+l][x+1-l] for l in range(3) if (x not in [0, len(line)-1] and y not in [0, len(lines)-1])])
             tot += downright in ["SAM", "MAS"] and downleft in ["SAM", "MAS"]
+            tot += sum([1 for word in l if word=="XMAS"])
     print(tot)
 
         
