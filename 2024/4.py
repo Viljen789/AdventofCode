@@ -1,10 +1,3 @@
-# def diag()
-    
-# def hor()
-    
-# def vert()
-
-
 with open("input.txt") as f:
     tot = 0
     lines = f.readlines()
