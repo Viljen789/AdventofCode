@@ -1,4 +1,4 @@
-def topsort(l) -> int:
+def topsort(l):
     global conditions
     global tot2
     for i, e in enumerate(l):
@@ -16,10 +16,8 @@ def topsort(l) -> int:
 with open("input.txt") as f:
     conditions = {}
     l = f.readline()
-    while(l):
+    while(l!= "\n"):
         l = l.strip().split("|")
-        if(len(l) == 1):
-            break
         conditions[l[1]] = conditions.get(l[1], []) + [l[0]]
         l = f.readline()
     tot1 = 0
@@ -33,7 +31,6 @@ with open("input.txt") as f:
         if(not good): topsort(l)
         tot1+=good*int(l[len(l)//2])    
         l = f.readline()
-    print(conditions)
     print(f"Part 1: {tot1}")
     print(f"Part 2: {tot2}")
 
