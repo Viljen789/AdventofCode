@@ -1,4 +1,4 @@
-def rec(factors, l, i, concat = False):
+def rec(factors, l, i, concat):
     if(i==len(factors)):
         return l
     nl = []
@@ -19,7 +19,7 @@ with open("input.txt") as f:
         line = line.split()
         target = int(line[0][:-1])
         factors = [int(x) for x in line[1:]]
-        l1 = rec(factors, [factors[0]], 1)
+        l1 = rec(factors, [factors[0]], 1, False)
         l2 = rec(factors, [factors[0]], 1, True)
         tot1+=target if target in l1 else 0
         tot2+=target if target in l2 else 0
