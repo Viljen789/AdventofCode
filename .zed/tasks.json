@@ -1,0 +1,16 @@
+[
+  {
+    "label": "Build & Run RISC-V",
+    "command": "./run_riscv.sh 2025/1.s",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  },
+  {
+    "label": "Run Node.js",
+    "command": "node 2025/1.js",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  }
+]
