@@ -55,7 +55,7 @@ const SolverLayout = ({
             {dayTitle}
           </a>
           <div
-            className={part === "part1" ? "text-gray-400" : "text-yellow-500"}
+            className={part === "part1" ? "text-gray-500" : "text-yellow-500" }
           >
             Day {day} part {part === "part1" ? "1" : "2"}
           </div>
@@ -96,7 +96,7 @@ const SolverLayout = ({
         </div>
 
         <div className="flex flex-col h-full gap-2">
-          <label>Puzzle Input</label>
+          <label className=" font-bold text-xl">Puzzle Input</label>
           <textarea
             value={inputValue}
             onChange={(e) => onInputChange(e.target.value)}
