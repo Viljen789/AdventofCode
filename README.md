@@ -2,6 +2,8 @@
 
 ## 2025
 
+Challenge: One new language per day
+
 ### Languages:
 
 - TypeScript
@@ -10,7 +12,7 @@
 - C
 - C++
 - Go
-- Julia 
+- Julia
 - JavaScript
 - C#
 - CUDA
