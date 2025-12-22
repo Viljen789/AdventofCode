@@ -8,7 +8,7 @@ INPUT=$1
 
 if [ -z "$INPUT" ]; then
     echo "Usage: ./run.sh [language|filename]"
-    echo "Available: python, javascript, typescript, c, cpp, rust, go, java, csharp, julia, cuda, zig, crystal, haskell"
+    echo "Available: python, javascript, typescript, c, cpp, rust, go, java, csharp, julia, cuda, zig, crystal, haskell, nim"
     exit 1
 fi
 
@@ -35,6 +35,7 @@ if [ -f "$INPUT" ]; then
         zig) LANGUAGE="zig" ;;
         cr) LANGUAGE="crystal" ;;
         hs) LANGUAGE="haskell" ;;
+        nim) LANGUAGE="nim" ;;
     esac
 elif [ -f "$INPUT.java" ]; then TARGET_FILE="$INPUT.java"; LANGUAGE="java"
 elif [ -f "$INPUT.py" ]; then TARGET_FILE="$INPUT.py"; LANGUAGE="python"
@@ -50,6 +51,7 @@ elif [ -f "$INPUT.cu" ]; then TARGET_FILE="$INPUT.cu"; LANGUAGE="cuda"
 elif [ -f "$INPUT.zig" ]; then TARGET_FILE="$INPUT.zig"; LANGUAGE="zig"
 elif [ -f "$INPUT.cr" ]; then TARGET_FILE="$INPUT.cr"; LANGUAGE="crystal"
 elif [ -f "$INPUT.hs" ]; then TARGET_FILE="$INPUT.hs"; LANGUAGE="haskell"
+elif [ -f "$INPUT.nim" ]; then TARGET_FILE="$INPUT.nim"; LANGUAGE="nim"
 else
     # Maybe it's just a language name for template files
     LANGUAGE=$INPUT
@@ -60,7 +62,7 @@ else
         c) TARGET_FILE="template.c" ;;
         cpp) TARGET_FILE="template.cpp" ;;
         rust) TARGET_FILE="template.rs" ;;
-        go) TARGET_FILE="template.go" ;;
+        go) TARGET_FILE="Day4.go" ;;
         java) TARGET_FILE="Day1.java" ;;
         csharp) TARGET_FILE="template.cs" ;;
         julia) TARGET_FILE="template.jl" ;;
@@ -68,6 +70,7 @@ else
         zig) TARGET_FILE="template.zig" ;;
         crystal) TARGET_FILE="Day2.cr" ;;
         haskell) TARGET_FILE="template.hs" ;;
+        nim) TARGET_FILE="Day4.nim" ;;
         *) echo "Error: Could not find file or language '$INPUT'"; exit 1 ;;
     esac
 fi
@@ -104,7 +107,7 @@ case $LANGUAGE in
     ;;
   go)
     if command -v go &> /dev/null; then
-        go run "$TARGET_FILE"
+        CGO_ENABLED=0 go run "$TARGET_FILE"
     else
         echo "Go not found. Try 'brew install go'"
     fi
@@ -164,6 +167,13 @@ case $LANGUAGE in
         ghc "$TARGET_FILE" && ./"$BASENAME"
     else
         echo "Haskell (ghc) not found. Try 'brew install ghc'"
+    fi
+    ;;
+  nim)
+    if command -v nim &> /dev/null; then
+        nim c -r "$TARGET_FILE"
+    else
+        echo "Nim not found. Try 'brew install nim'"
     fi
     ;;
   *)

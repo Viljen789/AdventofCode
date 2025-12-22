@@ -9,10 +9,8 @@
 #         for numberStr in readlines("Day3.txt")
 #     ])
 
-# Begynn på slutten og jobb framm. 
 
 # Part 2
-
 
 function part2(lines)
     total = 0
@@ -43,9 +41,4 @@ end
 
 
 
-# lines = readlines("Day3.txt")
-# 1772021727146110 too high
-# 176527348415611 too low 
-# 176527348415611
 @show part2(readlines("Day3.txt"))
-#
