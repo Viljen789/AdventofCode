@@ -8,7 +8,7 @@ INPUT=$1
 
 if [ -z "$INPUT" ]; then
     echo "Usage: ./run.sh [language|filename]"
-    echo "Available: python, javascript, typescript, c, cpp, rust, go, java, csharp, julia, cuda, zig, crystal, haskell, nim"
+    echo "Available: python, javascript, typescript, c, cpp, rust, go, java, csharp, julia, cuda, zig, crystal, haskell, nim, elixir, raku, odin, scala, swift, gleam"
     exit 1
 fi
 
@@ -36,6 +36,12 @@ if [ -f "$INPUT" ]; then
         cr) LANGUAGE="crystal" ;;
         hs) LANGUAGE="haskell" ;;
         nim) LANGUAGE="nim" ;;
+        exs) LANGUAGE="elixir" ;;
+        raku) LANGUAGE="raku" ;;
+        odin) LANGUAGE="odin" ;;
+        scala) LANGUAGE="scala" ;;
+        swift) LANGUAGE="swift" ;;
+        gleam) LANGUAGE="gleam" ;;
     esac
 elif [ -f "$INPUT.java" ]; then TARGET_FILE="$INPUT.java"; LANGUAGE="java"
 elif [ -f "$INPUT.py" ]; then TARGET_FILE="$INPUT.py"; LANGUAGE="python"
@@ -52,6 +58,12 @@ elif [ -f "$INPUT.zig" ]; then TARGET_FILE="$INPUT.zig"; LANGUAGE="zig"
 elif [ -f "$INPUT.cr" ]; then TARGET_FILE="$INPUT.cr"; LANGUAGE="crystal"
 elif [ -f "$INPUT.hs" ]; then TARGET_FILE="$INPUT.hs"; LANGUAGE="haskell"
 elif [ -f "$INPUT.nim" ]; then TARGET_FILE="$INPUT.nim"; LANGUAGE="nim"
+elif [ -f "$INPUT.exs" ]; then TARGET_FILE="$INPUT.exs"; LANGUAGE="elixir"
+elif [ -f "$INPUT.raku" ]; then TARGET_FILE="$INPUT.raku"; LANGUAGE="raku"
+elif [ -f "$INPUT.odin" ]; then TARGET_FILE="$INPUT.odin"; LANGUAGE="odin"
+elif [ -f "$INPUT.scala" ]; then TARGET_FILE="$INPUT.scala"; LANGUAGE="scala"
+elif [ -f "$INPUT.swift" ]; then TARGET_FILE="$INPUT.swift"; LANGUAGE="swift"
+elif [ -f "$INPUT.gleam" ]; then TARGET_FILE="$INPUT.gleam"; LANGUAGE="gleam"
 else
     # Maybe it's just a language name for template files
     LANGUAGE=$INPUT
@@ -71,6 +83,12 @@ else
         crystal) TARGET_FILE="Day2.cr" ;;
         haskell) TARGET_FILE="template.hs" ;;
         nim) TARGET_FILE="Day4.nim" ;;
+        elixir) TARGET_FILE="template.exs" ;;
+        raku) TARGET_FILE="template.raku" ;;
+        odin) TARGET_FILE="template.odin" ;;
+        scala) TARGET_FILE="template.scala" ;;
+        swift) TARGET_FILE="template.swift" ;;
+        gleam) TARGET_FILE="template.gleam" ;;
         *) echo "Error: Could not find file or language '$INPUT'"; exit 1 ;;
     esac
 fi
@@ -174,6 +192,54 @@ case $LANGUAGE in
         nim c -r "$TARGET_FILE"
     else
         echo "Nim not found. Try 'brew install nim'"
+    fi
+    ;;
+  elixir)
+    if command -v elixir &> /dev/null; then
+        elixir "$TARGET_FILE"
+    else
+        echo "Elixir not found. Try 'brew install elixir'"
+    fi
+    ;;
+  raku)
+    if command -v raku &> /dev/null; then
+        raku "$TARGET_FILE"
+    else
+        echo "Raku not found. Try 'brew install raku'"
+    fi
+    ;;
+  odin)
+    if command -v odin &> /dev/null; then
+        odin run "$TARGET_FILE" -file
+    else
+        echo "Odin not found. Try 'brew install odin'"
+    fi
+    ;;
+  scala)
+    if command -v scala &> /dev/null; then
+        scala "$TARGET_FILE"
+    else
+        echo "Scala not found. Try 'brew install scala'"
+    fi
+    ;;
+  swift)
+    if command -v swift &> /dev/null; then
+        swift "$TARGET_FILE"
+    else
+        echo "Swift not found. Try 'brew install swift'"
+    fi
+    ;;
+  gleam)
+    if command -v gleam &> /dev/null; then
+        if ! [ -f "gleam.toml" ]; then
+             echo "Initializing Gleam project..."
+             gleam new . --name aoc --skip-git
+        fi
+        if [ ! -d "src" ]; then mkdir src; fi
+        cp "$TARGET_FILE" src/main.gleam
+        gleam run
+    else
+        echo "Gleam not found. Try 'brew install gleam'"
     fi
     ;;
   *)
