@@ -17,21 +17,31 @@ defmodule Solve do
       MapSet.union(acc, MapSet.new(neighbors))
     end)
   end
-  def recursiveFind(pos, []) do
-    1
+  def indicesMap() do
+    Enum.reduce(parseData(), %{}, fn line, acc ->
+      MapSet.new(findAllIndex(line, "^"))
+    end)
   end
-  def recursiveFind(pos, [cur | remaining], memo) do
-    if Map.has_key?(memo, pos) do
-      memo[pos]
-    else
-      indices = findAllIndex(cur, "^")
-      if pos in indices do
-        memo = Map.put(memo, pos, recursiveFind(pos + 1, remaining, memo) + recursiveFind(pos - 1, remaining, memo))
-        memo[pos]
-      else
-        memo = Map.put(memo, pos, recursiveFind(pos, remaining, memo))
-        memo[pos]
-      end
+  def recursiveFind(pos, [], memo) do
+    {1, memo}
+  end
+  def recursiveFind(pos, [current_indices | remaining], memo) do
+
+    case Map.fetch(memo, {pos, length(remaining)}) do
+      {:ok, value} -> {value, memo}
+      :error ->
+        if(pos in current_indices) do
+          {val1, memo1} = recursiveFind(pos + 1, remaining, memo)
+          {val2, memo2} = recursiveFind(pos - 1, remaining, memo1)
+          result = val1 + val2
+          final_memo = Map.put(memo2, {pos, length(remaining)}, result)
+          {result, final_memo}
+        else
+          {val1, memo1} = recursiveFind(pos, remaining, memo)
+          result = val1
+          final_memo = Map.put(memo1, {pos, length(remaining)}, result)
+          {result, final_memo}
+        end
     end
   end
   def solvePart1() do
@@ -48,14 +58,17 @@ defmodule Solve do
         {acc_count, prev_indices}
       end
     end)
-    IO.inspect(final_count)
+    final_count
   end
   def solvePart2() do
-    [head | tail ] = parseData()
-    total = recursiveFind(Enum.at(findAllIndex(head, "S"), 0), tail, %{})
-    IO.inspect(total)
+    all_lines = parseData()
+    pre_parsed_indices = Enum.map(all_lines, fn line -> findAllIndex(line, "^") end)
+    start_pos = Enum.at(findAllIndex(hd(all_lines), "S"), 0)
+    [_first_row_indices | remaining_indices] = pre_parsed_indices
+    recursiveFind(start_pos, remaining_indices, %{})
   end
 end
 
-Solve.solvePart1()
-Solve.solvePart2()
+IO.inspect(Solve.solvePart1())
+{result, _memo} = Solve.solvePart2()
+IO.inspect(result)
