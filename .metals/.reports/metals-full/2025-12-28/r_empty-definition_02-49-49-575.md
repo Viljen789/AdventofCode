@@ -1,12 +1,27 @@
+error id: file://<WORKSPACE>/2025/Day8.scala:scala/Tuple3#_2.
+file://<WORKSPACE>/2025/Day8.scala
+empty definition using pc, found symbol in pc: scala/Tuple3#_2.
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+	 -point2/_2.
+	 -point2/_2#
+	 -point2/_2().
+	 -scala/Predef.point2._2.
+	 -scala/Predef.point2._2#
+	 -scala/Predef.point2._2().
+offset: 232
+uri: file://<WORKSPACE>/2025/Day8.scala
+text:
+```scala
 import scala.io.Source
 import scala.util.{Using, Failure, Success}
 
 object Day8 {
-  def distance(point1: (Int, Int, Int), point2: (Int, Int, Int)): Long = {
-    val dx = (point1._1 - point2._1).toLong
-    val dy = (point1._2 - point2._2).toLong
-    val dz = (point1._3 - point2._3).toLong
-    dx * dx + dy * dy + dz * dz
+  def distance(point1: (Int, Int, Int), point2: (Int, Int, Int)): Int = {
+    math.pow(point1._1 - point2._1, 2) +
+      math.pow(point1._2 - point2._@@2, 2) +
+      math.pow(point1._3 - point2._3, 2)
   }
   def sortDistances(
       distances: List[(Int, Int, Int)]
@@ -20,25 +35,15 @@ object Day8 {
       sets(i)
     }
   }
-  def mergeSets(
-      sets: Array[Int],
-      elem1: Int,
-      elem2: Int,
-      setsSize: Int
-  ): Int = {
+  def mergeSets(sets: Array[Int], elem1: Int, elem2: Int): Unit = {
     val root1 = find(sets, elem1)
     val root2 = find(sets, elem2)
-    var newSetsSize = 0
     if (root1 != root2) {
       sets(root1) = root2
-      newSetsSize = setsSize - 1
-    } else {
-      newSetsSize = setsSize
     }
-    newSetsSize
   }
   def findGroupSizes(parent: Array[Int]): Map[Int, Int] = {
-    (0 until parent.length)
+    (1 until parent.length)
       .map(i => find(parent, i))
       .groupBy(identity)
       .mapValues(_.size)
@@ -54,6 +59,7 @@ object Day8 {
     var lineToNumber = Map.empty[String, Int]
     Using(Source.fromFile(filename)) { source =>
       for (line <- source.getLines()) {
+        lineNumber += 1
         strLines = line :: strLines
         line match {
           case s"$dx,$dy,$dz" =>
@@ -63,16 +69,15 @@ object Day8 {
         }
         lineNumberToLine = lineNumberToLine.updated(lineNumber, line)
         lineToNumber = lineToNumber.updated(line, lineNumber)
-        lineNumber += 1
       }
     } match {
       case Success(_) =>
       case Failure(e) => println(s"Error reading file: ${e.getMessage}")
     }
 
-    var parent = Array.tabulate[Int](lineNumber)(i => i)
-    val points = lines.toArray.reverse
-    val distBuf = scala.collection.mutable.ListBuffer.empty[(Int, Int, Long)]
+    var parent = Array.tabulate[Int](lineNumber + 1)(i => i)
+    val points = lines.reverse.toArray
+    val distBuf = scala.collection.mutable.ListBuffer.empty[(Int, Int, Int)]
 
     for (i <- 0 until points.length) {
       for (j <- i + 1 until points.length) {
@@ -82,9 +87,7 @@ object Day8 {
     }
     val sortedDistances = distBuf.toList.sortBy(_._3)
     var total = 1
-    var iterations = 1000
-    var sets = lineNumber
-    for (i <- 0 until iterations) {
+    for (i <- 0 to 999) {
       val distance = sortedDistances(i)
       // println(
       //   "Distance between " + distance._1 + "(" + lineToNumber(
@@ -93,35 +96,21 @@ object Day8 {
       //     distance._2
       //   ) + ")" + " is " + distance._3
       // )
-      sets = mergeSets(
+      mergeSets(
         parent,
         distance._1,
-        distance._2,
-        sets
+        distance._2
       )
     }
     var topSizes = findGroupSizes(parent).toList.sortBy(_._2).takeRight(3)
-    println("Part1: " + topSizes.map(_._2).product)
-
-    var i = iterations
-    while (sets > 1) {
-      sets = mergeSets(
-        parent,
-        sortedDistances(i)._1,
-        sortedDistances(i)._2,
-        sets
-      )
-      i += 1
-    }
-    val point1 = points(
-      sortedDistances(i - 1)._1
-    )
-    val point2 = points(
-      sortedDistances(i - 1)._2
-    )
-    println(
-      s"Part2: ${point1.head.toLong * point2.head.toLong}"
-    )
+    println(topSizes.map(_._2).product)
   }
 
 }
+
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: scala/Tuple3#_2.
