@@ -2,7 +2,7 @@
 
 ## 2025
 
-Challenge: One new language per day
+Challenge: One new language per day, and visual changes with react/ts afterwards!
 
 ### Languages:
 
