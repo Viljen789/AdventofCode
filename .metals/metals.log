@@ -10094,3 +10094,67 @@ Dec 30, 2025 11:26:14 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint noti
 INFO: Unsupported notification method: $/setTrace
 Dec 30, 2025 11:26:29 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFO: Unsupported notification method: $/setTrace
+Jan 03, 2026 2:29:44 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Jan 03, 2026 2:35:04 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Jan 03, 2026 2:35:20 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Jan 03, 2026 2:35:48 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2026.01.04 00:36:32 INFO  Started: Metals version 1.6.4 in folders '/Users/viljen/Documents/SideProjects/AdventofCode' for client Antigravity 1.104.0.
+2026.01.04 00:36:33 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026.01.04 00:36:33 INFO  Attempting to connect to the build server...
+2026.01.04 00:36:33 INFO  Running BSP server List(/opt/homebrew/Cellar/scala/3.7.4/libexec/libexec/scala-cli.jar, --cli-default-scala-version, 3.7.4, --repository, file:///opt/homebrew/Cellar/scala/3.7.4/libexec/maven2, --prog-name, scala, --skip-cli-updates, bsp, --json-options, /Users/viljen/Documents/SideProjects/AdventofCode/.scala-build/ide-options-v2.json, --json-launcher-options, /Users/viljen/Documents/SideProjects/AdventofCode/.scala-build/ide-launcher-options.json, --envs-file, /Users/viljen/Documents/SideProjects/AdventofCode/.scala-build/ide-envs.json, /Users/viljen/Documents/SideProjects/AdventofCode)
+2026.01.04 00:36:33 INFO  BSP server: /opt/homebrew/Cellar/scala/3.7.4/libexec/libexec/scala-cli.jar: /opt/homebrew/Cellar/scala/3.7.4/libexec/libexec/scala-cli.jar: cannot execute binary file
+2026.01.04 00:36:33 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/viljen/Documents/SideProjects/AdventofCode/.metals/bsp.trace.json or /Users/viljen/Library/Caches/org.scalameta.metals/bsp.trace.json
+Jan 04, 2026 12:36:33 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Jan 04, 2026 12:36:33 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2026.01.04 23:37:26 ERROR Timeout waiting for 'build/initialize' response
+2026.01.04 23:37:26 WARN  Retrying connection to the build server scala
+2026.01.04 23:37:26 INFO  Running BSP server List(/opt/homebrew/Cellar/scala/3.7.4/libexec/libexec/scala-cli.jar, --cli-default-scala-version, 3.7.4, --repository, file:///opt/homebrew/Cellar/scala/3.7.4/libexec/maven2, --prog-name, scala, --skip-cli-updates, bsp, --json-options, /Users/viljen/Documents/SideProjects/AdventofCode/.scala-build/ide-options-v2.json, --json-launcher-options, /Users/viljen/Documents/SideProjects/AdventofCode/.scala-build/ide-launcher-options.json, --envs-file, /Users/viljen/Documents/SideProjects/AdventofCode/.scala-build/ide-envs.json, /Users/viljen/Documents/SideProjects/AdventofCode)
+2026.01.04 23:37:26 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/viljen/Documents/SideProjects/AdventofCode/.metals/bsp.trace.json or /Users/viljen/Library/Caches/org.scalameta.metals/bsp.trace.json
+2026.01.04 23:37:26 INFO  BSP server: /opt/homebrew/Cellar/scala/3.7.4/libexec/libexec/scala-cli.jar: /opt/homebrew/Cellar/scala/3.7.4/libexec/libexec/scala-cli.jar: cannot execute binary file
+2026.01.04 23:38:26 ERROR Timeout waiting for 'build/initialize' response
+2026.01.04 23:38:26 WARN  Retrying connection to the build server scala
+2026.01.04 23:38:26 INFO  Running BSP server List(/opt/homebrew/Cellar/scala/3.7.4/libexec/libexec/scala-cli.jar, --cli-default-scala-version, 3.7.4, --repository, file:///opt/homebrew/Cellar/scala/3.7.4/libexec/maven2, --prog-name, scala, --skip-cli-updates, bsp, --json-options, /Users/viljen/Documents/SideProjects/AdventofCode/.scala-build/ide-options-v2.json, --json-launcher-options, /Users/viljen/Documents/SideProjects/AdventofCode/.scala-build/ide-launcher-options.json, --envs-file, /Users/viljen/Documents/SideProjects/AdventofCode/.scala-build/ide-envs.json, /Users/viljen/Documents/SideProjects/AdventofCode)
+2026.01.04 23:38:26 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/viljen/Documents/SideProjects/AdventofCode/.metals/bsp.trace.json or /Users/viljen/Library/Caches/org.scalameta.metals/bsp.trace.json
+2026.01.04 23:38:26 INFO  BSP server: /opt/homebrew/Cellar/scala/3.7.4/libexec/libexec/scala-cli.jar: /opt/homebrew/Cellar/scala/3.7.4/libexec/libexec/scala-cli.jar: cannot execute binary file
+2026.01.04 23:39:26 ERROR Timeout waiting for 'build/initialize' response
+2026.01.04 23:39:26 WARN  Retrying connection to the build server scala
+2026.01.04 23:39:26 INFO  Running BSP server List(/opt/homebrew/Cellar/scala/3.7.4/libexec/libexec/scala-cli.jar, --cli-default-scala-version, 3.7.4, --repository, file:///opt/homebrew/Cellar/scala/3.7.4/libexec/maven2, --prog-name, scala, --skip-cli-updates, bsp, --json-options, /Users/viljen/Documents/SideProjects/AdventofCode/.scala-build/ide-options-v2.json, --json-launcher-options, /Users/viljen/Documents/SideProjects/AdventofCode/.scala-build/ide-launcher-options.json, --envs-file, /Users/viljen/Documents/SideProjects/AdventofCode/.scala-build/ide-envs.json, /Users/viljen/Documents/SideProjects/AdventofCode)
+2026.01.04 23:39:26 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/viljen/Documents/SideProjects/AdventofCode/.metals/bsp.trace.json or /Users/viljen/Library/Caches/org.scalameta.metals/bsp.trace.json
+2026.01.04 23:39:26 INFO  BSP server: /opt/homebrew/Cellar/scala/3.7.4/libexec/libexec/scala-cli.jar: /opt/homebrew/Cellar/scala/3.7.4/libexec/libexec/scala-cli.jar: cannot execute binary file
+2026.01.04 23:39:28 INFO  no build target found for /Users/viljen/Documents/SideProjects/AdventofCode/2025/Day1.java. Using fallback presentation compiler.
+2026.01.04 23:39:28 INFO  no build target found for /Users/viljen/Documents/SideProjects/AdventofCode/2025/Day8.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2026.01.04 23:40:26 ERROR Timeout waiting for 'build/initialize' response
+2026.01.04 23:40:26 WARN  Retrying connection to the build server scala
+2026.01.04 23:40:26 INFO  Running BSP server List(/opt/homebrew/Cellar/scala/3.7.4/libexec/libexec/scala-cli.jar, --cli-default-scala-version, 3.7.4, --repository, file:///opt/homebrew/Cellar/scala/3.7.4/libexec/maven2, --prog-name, scala, --skip-cli-updates, bsp, --json-options, /Users/viljen/Documents/SideProjects/AdventofCode/.scala-build/ide-options-v2.json, --json-launcher-options, /Users/viljen/Documents/SideProjects/AdventofCode/.scala-build/ide-launcher-options.json, --envs-file, /Users/viljen/Documents/SideProjects/AdventofCode/.scala-build/ide-envs.json, /Users/viljen/Documents/SideProjects/AdventofCode)
+2026.01.04 23:40:26 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/viljen/Documents/SideProjects/AdventofCode/.metals/bsp.trace.json or /Users/viljen/Library/Caches/org.scalameta.metals/bsp.trace.json
+2026.01.04 23:40:26 INFO  BSP server: /opt/homebrew/Cellar/scala/3.7.4/libexec/libexec/scala-cli.jar: /opt/homebrew/Cellar/scala/3.7.4/libexec/libexec/scala-cli.jar: cannot execute binary file
+2026.01.04 23:41:26 ERROR Timeout waiting for 'build/initialize' response
+2026.01.04 23:41:26 WARN  Retrying connection to the build server scala
+2026.01.04 23:41:26 INFO  Running BSP server List(/opt/homebrew/Cellar/scala/3.7.4/libexec/libexec/scala-cli.jar, --cli-default-scala-version, 3.7.4, --repository, file:///opt/homebrew/Cellar/scala/3.7.4/libexec/maven2, --prog-name, scala, --skip-cli-updates, bsp, --json-options, /Users/viljen/Documents/SideProjects/AdventofCode/.scala-build/ide-options-v2.json, --json-launcher-options, /Users/viljen/Documents/SideProjects/AdventofCode/.scala-build/ide-launcher-options.json, --envs-file, /Users/viljen/Documents/SideProjects/AdventofCode/.scala-build/ide-envs.json, /Users/viljen/Documents/SideProjects/AdventofCode)
+2026.01.04 23:41:26 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/viljen/Documents/SideProjects/AdventofCode/.metals/bsp.trace.json or /Users/viljen/Library/Caches/org.scalameta.metals/bsp.trace.json
+2026.01.04 23:41:26 INFO  BSP server: /opt/homebrew/Cellar/scala/3.7.4/libexec/libexec/scala-cli.jar: /opt/homebrew/Cellar/scala/3.7.4/libexec/libexec/scala-cli.jar: cannot execute binary file
+2026.01.04 23:42:26 ERROR Timeout waiting for 'build/initialize' response
+2026.01.04 23:42:26 ERROR Failed to connect with build server, no functionality will work.
+java.util.concurrent.TimeoutException
+	at java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
+	at java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
+	at scala.meta.internal.metals.BuildServerConnection$.initialize(BuildServerConnection.scala:787)
+	at scala.meta.internal.metals.BuildServerConnection$.$anonfun$fromSockets$1(BuildServerConnection.scala:658)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:500)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.lang.Thread.run(Thread.java:1583)
+
+2026.01.04 23:42:27 WARN  no build target for: /Users/viljen/Documents/SideProjects/AdventofCode/2025/Day8.scala
+2026.01.04 23:42:27 WARN  no build target for: /Users/viljen/Documents/SideProjects/AdventofCode/2025/Day1.java
+2026.01.04 23:42:26 INFO  no build target found for /Users/viljen/Documents/SideProjects/AdventofCode/2025/Day8.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Jan 04, 2026 7:47:06 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Jan 04, 2026 7:50:56 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
