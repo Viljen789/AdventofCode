@@ -20,14 +20,15 @@ public class Day1 {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        // Lines now contains all the strings/numbers
+        // "lines" arrayList now contains all the strings/numbers
 
 
-        // Start at 50
+        // Initiate all variables, the rotation starts at 50
         int cur = 50;
         int prev = 50;
         int tot1 = 0;
         int tot2 = 0;
+
         for (String line : lines) {
             char dir = line.charAt(0); // get the direction
             int steps = Integer.parseInt(line.substring(1)); // get the rotation amount
