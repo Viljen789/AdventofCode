@@ -111,6 +111,7 @@ const part1 = (): number => {
 		) {
 			let goalLightConfig = startLightConfig;
 			let curLightConfig = 0;
+			let clickedButtons = [];
 			for (
 				let button = 0;
 				button < entriesPart1.buttons[light].length;
@@ -118,17 +119,40 @@ const part1 = (): number => {
 			) {
 				curLightConfig ^=
 					buttonIdx & (1 << button) ? entriesPart1.buttons[light][button] : 0;
-				// if (buttonIdx & (1<<button)) console.log(`Light: ${light} Button ${button}: ${buttonIdx & (1<<button)} current Buttons: ${entries.buttons[light][button]} Light after: ${goalLightConfig}`);
+				if (buttonIdx & (1 << button)) clickedButtons.push(button);
 			}
-			// console.log("\n");
+			// console.log(
+			// 	`Light: ${light} Light after button presses: ${clickedButtons}: ${Array.from(
+			// 		{length: lightLength},
+			// 		(_, i) => (curLightConfig & (1 << i) ? "#" : ".")
+			// 	).join("")}`
+			// );
+			console.log("\n");
 			if (curLightConfig === goalLightConfig) {
-				// console.log(`Match: ${buttonIdx}`);
-				// for (let button = 0; button < entries.buttons[light].length; button++) {
-				//     if (buttonIdx & (1<<button)) console.log(`Light: ${light} Button ${button}: ${buttonIdx & (1<<button)} current Buttons: ${entries.buttons[light][button]}`);
-
-				// }
+				// console.log(
+				// 	`Match with buttons: ${clickedButtons}, which takes ${countSetBits(
+				// 		buttonIdx
+				// 	)} button presses\n`
+				// );
+				for (
+					let button = 0;
+					button < entriesPart1.buttons[light].length;
+					button++
+				) {
+					if (buttonIdx & (1 << button))
+						// console.log(
+						// 	`Light: ${light} Button ${button}: ${
+						// 		buttonIdx & (1 << button)
+						// 	} current Buttons: ${entriesPart1.buttons[light][button]}`
+						// );
+				}
 				const count = countSetBits(buttonIdx);
-				if (count < currenntShortestCount) currenntShortestCount = count;
+				if (count < currenntShortestCount) {
+					currenntShortestCount = count;
+				// 	console.log(
+				// 		`New shortest: ${currenntShortestCount} with buttons: ${clickedButtons}`
+				// 	);
+				// }
 			}
 		}
 		tot += currenntShortestCount;
@@ -136,6 +160,7 @@ const part1 = (): number => {
 	}
 	return tot;
 };
+console.log(part1());
 
 // const includeExclude = (joltage: number[], buttonIdx: number, buttonsList: number[][]): number => {
 //     const key = `${joltage.join(",")}-${buttonIdx}`;
@@ -170,49 +195,55 @@ const part1 = (): number => {
 //     return minMoves;
 // }
 
-// const iterativeBottomUp = (
-// 	joltageTarget: number[],
-// 	buttonsList: number[][]
-// ): number => {
-// 	let dp = new Map<string, number>();
-// 	dp.set(Array.from({length: joltageTarget.length}, () => 0).join(","), 0);
-// 	for (const buttons of buttonsList) {
-// 		let nextDp = new Map<string, number>(dp);
-// 		for (const [stateStr, moves] of dp.entries()) {
-// 			let currentJoltage = stateStr.split(",").map((jolt) => parseInt(jolt));
-// 			let tempJoltage = [...currentJoltage];
-// 			let addedMoves = 0;
-// 			while (true) {
-// 				addedMoves += 1;
-// 				let possible = true;
-// 				for (const btn of buttons) {
-// 					tempJoltage[btn]++;
-// 					if (tempJoltage[btn] > joltageTarget[btn]) {
-// 						possible = false;
-// 						break;
-// 					}
-// 				}
-// 				if (!possible) break;
-// 				const nextKey = tempJoltage.join(",");
-// 				const currentBest = nextDp.get(nextKey) ?? Infinity;
+const iterativeBottomUp = (
+	joltageTarget: number[],
+	buttonsList: number[][]
+): number => {
+	let lastButtonindex = new Map<number, number>();
+	for (let i = buttonsList.length - 1; i >= 0; i--) {
+		for (const btn of buttonsList[i]) {
+			lastButtonindex.set(btn, i);
+		}
+	}
+	let dp = new Map<string, number>();
+	dp.set(Array.from({length: joltageTarget.length}, () => 0).join(","), 0);
+	for (const buttons of buttonsList) {
+		let nextDp = new Map<string, number>(dp);
+		for (const [stateStr, moves] of dp.entries()) {
+			let currentJoltage = stateStr.split(",").map((jolt) => parseInt(jolt));
+			let tempJoltage = [...currentJoltage];
+			let addedMoves = 0;
+			while (true) {
+				addedMoves += 1;
+				let possible = true;
+				for (const btn of buttons) {
+					tempJoltage[btn]++;
+					if (tempJoltage[btn] > joltageTarget[btn]) {
+						possible = false;
+						break;
+					}
+				}
+				if (!possible) break;
+				const nextKey = tempJoltage.join(",");
+				const currentBest = nextDp.get(nextKey) ?? Infinity;
 
-// 				if (moves + addedMoves < currentBest) {
-// 					nextDp.set(nextKey, moves + addedMoves);
-// 				}
-// 			}
-// 		}
-// 		dp = nextDp;
-// 	}
-// 	// console.log(dp);
-// 	return dp.get(joltageTarget.join(",")) ?? Infinity;
-// };
-// const getNumericKey = (joltage: number[]): bigint => {
-// 	let key = 0n;
-// 	for (let i = 0; i < joltage.length; i++) {
-// 		key |= BigInt(joltage[i]) << BigInt(i * 8);
-// 	}
-// 	return key;
-// };
+				if (moves + addedMoves < currentBest) {
+					nextDp.set(nextKey, moves + addedMoves);
+				}
+			}
+		}
+		dp = nextDp;
+	}
+	// console.log(dp);
+	return dp.get(joltageTarget.join(",")) ?? Infinity;
+};
+const getNumericKey = (joltage: number[]): bigint => {
+	let key = 0n;
+	for (let i = 0; i < joltage.length; i++) {
+		key |= BigInt(joltage[i]) << BigInt(i * 8);
+	}
+	return key;
+};
 // const BFS = (
 // 	joltageTarget: number[],
 // 	buttons: number[][]
@@ -266,106 +297,106 @@ const part1 = (): number => {
 // 	return Infinity;
 // };
 
-const part2SolveLinearSystem = (
-	buttons: number[][],
-	target: number[]
-): number => {
-	const rows = target.length;
-	const cols = buttons.length;
+// const part2SolveLinearSystem = (
+// 	buttons: number[][],
+// 	target: number[]
+// ): number => {
+// 	const rows = target.length;
+// 	const cols = buttons.length;
 
-	const matrix = Array.from({length: rows}, () =>
-		Array.from({length: cols + 1}, () => 0)
-	);
+// 	const matrix = Array.from({length: rows}, () =>
+// 		Array.from({length: cols + 1}, () => 0)
+// 	);
 
-	for (let col = 0; col < cols; col++) {
-		const affectedIdx = buttons[col];
-		for (const idx of affectedIdx) {
-			matrix[idx][col] = 1;
-		}
-	}
-	for (let row = 0; row < rows; row++) {
-		matrix[row][cols] = target[row];
-	}
+// 	for (let col = 0; col < cols; col++) {
+// 		const affectedIdx = buttons[col];
+// 		for (const idx of affectedIdx) {
+// 			matrix[idx][col] = 1;
+// 		}
+// 	}
+// 	for (let row = 0; row < rows; row++) {
+// 		matrix[row][cols] = target[row];
+// 	}
 
-	let pivotRow = 0;
-	const colToRowMap = new Map<number, number>();
+// 	let pivotRow = 0;
+// 	const colToRowMap = new Map<number, number>();
 
-	for (let col = 0; col < cols && pivotRow < rows; col++) {
-		let pivotCol = -1;
+// 	for (let col = 0; col < cols && pivotRow < rows; col++) {
+// 		let pivotCol = -1;
 
-		for (let r = pivotRow; r < rows; r++) {
-			if (matrix[r][col] !== 0) {
-				pivotCol = r;
-				break;
-			}
-		}
+// 		for (let r = pivotRow; r < rows; r++) {
+// 			if (matrix[r][col] !== 0) {
+// 				pivotCol = r;
+// 				break;
+// 			}
+// 		}
 
-		if (pivotCol === -1) continue; // Col is all 0
+// 		if (pivotCol === -1) continue; // Col is all 0
 
-		[matrix[pivotRow], matrix[pivotCol]] = [matrix[pivotCol], matrix[pivotRow]]; // swap rows
+// 		[matrix[pivotRow], matrix[pivotCol]] = [matrix[pivotCol], matrix[pivotRow]]; // swap rows
 
-		const pivotVal = matrix[pivotRow][col];
-		for (let c = col; c <= cols; c++) {
-			matrix[pivotRow][c] /= pivotVal;
-		}
+// 		const pivotVal = matrix[pivotRow][col];
+// 		for (let c = col; c <= cols; c++) {
+// 			matrix[pivotRow][c] /= pivotVal;
+// 		}
 
-		for (let row = 0; row < rows; row++) {
-			if (row === pivotRow) continue;
+// 		for (let row = 0; row < rows; row++) {
+// 			if (row === pivotRow) continue;
 
-			const factor = matrix[row][col];
-			for (let c = col; c <= cols; c++) {
-				matrix[row][c] -= matrix[pivotRow][c] * factor;
-			}
-		}
-		colToRowMap.set(col, pivotRow);
-		pivotRow++;
-	}
-	const solution = Array(cols).fill(0);
-	for (let row = 0; row < rows; row++) {
-		solution[row] = matrix[row][cols];
-	}
+// 			const factor = matrix[row][col];
+// 			for (let c = col; c <= cols; c++) {
+// 				matrix[row][c] -= matrix[pivotRow][c] * factor;
+// 			}
+// 		}
+// 		colToRowMap.set(col, pivotRow);
+// 		pivotRow++;
+// 	}
+// 	const solution = Array(cols).fill(0);
+// 	for (let row = 0; row < rows; row++) {
+// 		solution[row] = matrix[row][cols];
+// 	}
 
-	let totalPresses = 0;
-	let verifyArray = Array.from({length: buttons.length}, () => 0);
-	for (let i = 0; i < buttons.length; i++) {
-		totalPresses += solution[i];
-		const target = solution[i];
-		const button = buttons[i];
-		for (const btn of button) {
-			verifyArray[btn] += target;
-		}
-	}
-	if (verifyArray.every((_, idx) => verifyArray[idx] === target[idx])) {
-		return totalPresses;
-	}
-	console.log(solution);
-	console.log(target);
-	console.log(verifyArray);
+// 	let totalPresses = 0;
+// 	let verifyArray = Array.from({length: buttons.length}, () => 0);
+// 	for (let i = 0; i < buttons.length; i++) {
+// 		totalPresses += solution[i];
+// 		const target = solution[i];
+// 		const button = buttons[i];
+// 		for (const btn of button) {
+// 			verifyArray[btn] += target;
+// 		}
+// 	}
+// 	if (verifyArray.every((_, idx) => verifyArray[idx] === target[idx])) {
+// 		return totalPresses;
+// 	}
+// 	console.log(solution);
+// 	console.log(target);
+// 	console.log(verifyArray);
 
-	return solution.reduce((a, b) => a + b, 0);
-};
+// 	return solution.reduce((a, b) => a + b, 0);
+// };
 
-const Part2 = (): number => {
-	readFilePart2Style();
-	let tot = 0;
-	for (
-		let iteration = 0;
-		iteration < entriesPart2.buttons.length;
-		iteration++
-	) {
-		const min = part2SolveLinearSystem(
-			entriesPart2.buttons[iteration],
-			entriesPart2.joltage[iteration]
-		);
-		console.log(`Iter: ${iteration} Min: ${min}`);
-		tot += min;
-	}
-	return tot;
-};
-// part1();
-// console.dir(entriesPart1, { depth: 3 });
-// console.log(`Part 1: ${part1()}`);
-console.log(`Part 2: ${Part2()}`);
+// const Part2 = (): number => {
+// 	readFilePart2Style();
+// 	let tot = 0;
+// 	for (
+// 		let iteration = 0;
+// 		iteration < entriesPart2.buttons.length;
+// 		iteration++
+// 	) {
+// 		const min = part2SolveLinearSystem(
+// 			entriesPart2.buttons[iteration],
+// 			entriesPart2.joltage[iteration]
+// 		);
+// 		console.log(`Iter: ${iteration} Min: ${min}`);
+// 		tot += min;
+// 	}
+// 	return tot;
+// };
+// // part1();
+// // console.dir(entriesPart1, { depth: 3 });
+// // console.log(`Part 1: ${part1()}`);
+// console.log(`Part 2: ${Part2()}`);
 // console.dir(entriesPart2, { depth: 3 });
 
 /*

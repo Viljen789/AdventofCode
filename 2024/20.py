@@ -133,6 +133,6 @@ print(tot1)
 #     time.sleep(10)
 # wrapper(main)
 # # print(lines[start[1]][start[0]])
-sortedKeys = sorted(save.keys())
-for key in sortedKeys:
-    print(save[key], key)
+# sortedKeys = sorted(save.keys())
+# for key in sortedKeys:
+#     print(save[key], key)

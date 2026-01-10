@@ -44,9 +44,10 @@ let lines: [String] = readFile()
 let numLines: [[Int]] = lines.map { line in
     line.split(separator: ",").map { Int($0)! }
 }
-
 var maxArea: Int = 0
-for line: [Int] in numLines {
+var maxHeight: Int = numLines[0][1]
+
+for (idx, line): (Int, [Int]) in numLines.enumerated() {
     for secondLine: [Int] in numLines {
         if line != secondLine {
             let area: Int = area(firstCorner: line, secondCorner: secondLine)
@@ -55,5 +56,16 @@ for line: [Int] in numLines {
             }
         }
     }
+    // (x, y)
+    // Traverse the list from N->S and E-> W, and find 
+    if(line[1]<maxHeight){
+        maxHeight = line[1]
+        idx =
+    }
 }
+
 print(maxArea)
+for line: [Int] in originalLines {
+
+}
+print(originalLines)

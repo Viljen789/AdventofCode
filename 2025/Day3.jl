@@ -15,20 +15,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # More readable version: 
 # function part2(lines)
 #     total = 0

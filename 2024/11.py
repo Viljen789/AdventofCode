@@ -17,7 +17,7 @@ def blinking(d, n, pt2 = False):
             else:
                 nd[i*2024] = nd.get(i*2024, 0) + d[i]
         d = nd
-        #print(d)
+        #print(neighboursMap)
     return d
 
 d = {}
