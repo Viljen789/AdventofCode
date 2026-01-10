@@ -1,0 +1,114 @@
+# IDE and Editor
+.fleet/
+.idea/
+.vscode/
+.metals/
+.bsp/
+.zed/
+
+# Scala
+.scala-build/
+.scalafmt.conf
+target/
+project/target/
+project/project/
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+ENV/
+env/
+
+# C/C++
+*.o
+*.out
+*.exe
+*.obj
+*.a
+*.so
+*.dylib
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+*.cmake
+build/
+bin/
+obj/
+
+# C#/.NET
+bin/
+obj/
+*.dll
+*.pdb
+*.user
+*.suo
+
+# Haskell
+*.hi
+*.o
+.stack-work/
+dist/
+dist-newstyle/
+
+# Nim
+nimcache/
+
+# Go
+*.test
+*.prof
+
+# Swift
+*.swiftmodule
+*.swiftdoc
+.build/
+DerivedData/
+
+# Rust
+target/
+Cargo.lock
+
+# Zig
+zig-cache/
+zig-out/
+
+# TypeScript/JavaScript
+node_modules/
+*.js.map
+*.d.ts
+
+# Julia
+*.jl.cov
+*.jl.*.cov
+*.jl.mem
+
+# Elixir
+_build/
+deps/
+*.beam
+.elixir_ls/
+
+# Raku
+.precomp/
+
+# Gleam
+build/
+
+# Compiled executables
+Day5
+Day11
+test
+
+# Input and temporary files
+*.txt
+tempCodeRunnerFile.*
