@@ -34,6 +34,7 @@ for source, neighbours in neighboursMap.items():
 tot1 = 0
 print(triples)
 triplesStr = set()
+
 for triple in triples:
     triplesStr.add(",".join(triple))
     found = False

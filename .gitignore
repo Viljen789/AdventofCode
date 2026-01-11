@@ -113,3 +113,5 @@ test
 *.txt
 tempCodeRunnerFile.*
 template.*
+test.*
+!2025/aoc-2025/app/days/x/template.tsx
